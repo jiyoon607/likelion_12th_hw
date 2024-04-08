@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="para_parents">
+    <div class="para_child">
+        <div class="contain">
+        <h3 class="contents">🦁최강 {{ number }}조 팀원</h3>
+        <ul>
+            {% for n in members %}
+            <li>{{ n }}</li>
+            {% endfor %}
+        </ul>
+        </div>
+        <div class="contain">마복림 할머니 떡볶이 맛있어요 !</div>
+    </div>
+        <img class="image" src="{% static 'images/6team_image.jpg' %}" alt="6team_image" width="600px">
+</div>
+{% endblock %}

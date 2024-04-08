@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+            <div class="para_parents">
+                <div class="para_child">
+                    <div class="contain">
+                        <div class="contents">🦁MTV 패턴의 요소</div>
+                        <ul>
+                            {% for n in element %}
+                            <li>{{ n }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="contain">
+                        <div class="contents">🦁MTV 패턴의 작동 방법</div>
+                        <ol>
+                            <li>사용자로부터 URL request 받기</li>
+                            <li>URL이 urls.py 파일에 정의된 URL패턴과 매칭되는지를 분석</li>
+                            <li>View에서 요청에 따른 적절한 로직 수행</li>
+                            <li>Model에서 DB에 접근하여 적절한 로직 수행</li>
+                            <li>Template에서 보여지는 부분, 인터페이스를 제공</li>
+                            <li>사용자에게 response</li>
+                        </ol>
+                    </div>
+                </div>
+                <img class="image" src="{% static 'images/MTV.png' %}" alt="MTV" width="600px" height="300px">
+            </div>
+{% endblock %}
