@@ -10,12 +10,8 @@
     <body class="body-container">
         <h1 class="title">멋쟁이사자처럼 2주차 과제</h1>
         <div>
-            <nav class="navbar-container">
-                <!-- mainpage 링크 연결 -->
-                <a class="navbar-link" href="{% url 'mainpage' %}">DjangoMTV</a>
-                <!-- secondpage 링크 연결 -->
-                <a class="navbar-link" href="{% url 'secondpage' %}">admin</a>
-            </nav>
+            {% include 'shared/_navbar.html' %}
+
             {% block content %}
 
             {% endblock %}
