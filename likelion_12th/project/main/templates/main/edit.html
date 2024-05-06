@@ -5,8 +5,11 @@
 <form action="{% url 'main:update' post.id %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %} 
     <p>제목 : <input type="text" name="title" value="{{post.title}}"></p> 
-    <p>작성자 : <input type="text" name="writer" value="{{post.writer}}"></p> 
-    <p>나이 : <input type="number" name="age" min="1" max="100" value="{{post.age}}"></p>
+    <p>글 종류 : <select name="post_type" value="{{post.post_type}}">
+        <option value="Q">질문</option>
+        <option value="A">답변</option>
+        <option value="etc">기타</option>
+    </select>
     
     {% if post.image %} 
         <p><img src="{{ post.image.url }}" alt="사진" width="300px"></p> 

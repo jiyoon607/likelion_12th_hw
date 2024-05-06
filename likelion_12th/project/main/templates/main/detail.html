@@ -1,10 +1,15 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% block content %} 
-<h3>{{ post.title }}</h3> 
+<h3>{% if post.post_type == "Q" %}
+        [질문] 
+    {% elif post.post_type == "A" %}
+        [답변]
+    {% else %}
+        [기타]
+    {% endif %}
+     {{ post.title }}</h3> 
 작성자 : {{ post.writer }}
-<br>
-작성자 나이: {{ post.age }}
 <br>
 날짜 : {{ post.pub_date }} 
 <hr/>

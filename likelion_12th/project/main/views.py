@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 
 from .models import Post
+from accounts.models import Profile
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -26,8 +28,8 @@ def create(request):
     new_post = Post()
 
     new_post.title = request.POST['title']
-    new_post.writer = request.POST['writer']
-    new_post.age = request.POST['age']
+    new_post.writer = request.user
+    new_post.post_type = request.POST['post_type']
     new_post.image = request.FILES.get('image')
     new_post.body = request.POST['body']
     new_post.pub_date = timezone.now()
@@ -44,8 +46,8 @@ def update(request, id):
     update_post = Post.objects.get(pk=id)
 
     update_post.title = request.POST['title']
-    update_post.writer = request.POST['writer']
-    update_post.age = request.POST['age']
+    update_post.writer = request.user
+    update_post.post_type = request.POST['post_type']
     update_post.image = request.FILES.get('image')
     update_post.body = request.POST['body']
     update_post.pub_date = timezone.now()

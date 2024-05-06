@@ -2,8 +2,26 @@
 <nav class="navbar-container">
     <!-- mainpage 링크 연결 -->
     <a class="navbar-link" href="{% url 'main:mainpage' %}">DjangoMTV</a>
-    <!-- new-post 링크 연결 -->
-    <a class="navbar-link" href="{% url 'main:new-post' %}">NewPost</a>
     <!-- secondpage 링크 연결 -->
-    <a class="navbar-link" href="{% url 'main:secondpage' %}">PostList</a>
+    <a class="navbar-link" href="{% url 'main:secondpage' %}">게시판</a>
+    <!-- new-post 링크 연결 -->
+    <a class="navbar-link" href="{% url 'main:new-post' %}">글쓰기</a>
+
+    <!--사용자 인증 정보-->
+    <div class="nav-right">
+        {% if user.is_authenticated %}
+        <!-- 로그인 시 보이는 화면 -->
+        <ul class="nav-link-account">
+            <li class="nave-link-user">{{user.username}}</li>
+            <li><a href="{% url 'accounts:logout' %}">로그아웃</a></li>
+            <li><a href="{% url 'users:mypage' %}">마이페이지</a></li>
+        </ul>
+        {% else %}
+        <!-- 로그아웃 시 보이는 화면 -->
+        <ul class="nav-link-account">
+            <li><a href="{% url 'accounts:login' %}">로그인</a></li>
+            <li><a href="{% url 'accounts:signup' %}">회원가입</a></li>
+        </ul>
+        {% endif %}
+    </div>
 </nav>

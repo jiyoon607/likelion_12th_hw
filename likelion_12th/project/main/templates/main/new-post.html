@@ -3,9 +3,14 @@
 {% block content %} 
 <form action="{% url 'main:create' %}" method="POST" enctype="multipart/form-data"> 
     {% csrf_token %} 
-    <p>제목 : <input type="text" name="title"></p> 
-    <p>작성자 : <input type="text" name="writer"></p>
-    <p>나이 : <input type="number" name="age" min="1" max="100"></p>
+    <p>제목 : <input type="text" name="title"></p>
+    <p>글 종류 : 
+        <select name="post_type">
+            <option value="Q">질문</option>
+            <option value="A">답변</option>
+            <option value="etc" selected>기타</option>
+        </select>
+    </p>
     <p>사진 : <input type="file" name="image"></p>
     <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p> 
     <button type="submit">제출</button> 

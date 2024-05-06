@@ -1,20 +1,85 @@
 <!DOCTYPE html>
 {% load static %}
-    <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}">
-        <title>Django MTV</title>
-    </head>
-    <body class="body-container">
-        <h1 class="title">멋쟁이사자처럼 2주차 과제</h1>
-        <div>
-            {% include 'shared/_navbar.html' %}
+<html lang="ko">
 
-            {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIKELION 12th Django Session</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
 
-            {% endblock %}
-        </div>
-    </body>
+        .body-container {
+            background-color: #111;
+            color: #fff;
+            margin: 20px;
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            gap: 40px;
+            background-color: #FF9364;
+            font-size: 18px;
+        }
+
+        .navbar-link {
+            color: #5c3900;
+            font-size: 30px;
+        }
+
+        .navbar-link:hover {
+            color: #111;
+        }
+
+        .contents {
+            font-size: 50px;
+            margin: 20px;
+        }
+
+        /*네비게이션 수정(4주차)*/
+
+        .nav-right {
+            margin-left: auto;
+        }
+
+        .nav-link-user{
+            list-style-type: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .nav-link-account {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link-account li {
+            display: inline;
+            padding: 10px 20px;
+            text-decoration: none; 
+        }
+
+        .nav-link-account li a {
+            color: white;
+            text-decoration: none; 
+        }
+    </style>
+</head>
+
+<body class="body-container">
+    {% include 'shared/_navbar.html' %}
+    <div>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+
 </html>

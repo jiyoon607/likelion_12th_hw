@@ -5,7 +5,14 @@
     {% for post in posts %} 
     <div> 
         <hr/> 
-        <h3>{{post.title}}</h3> 
+        <h3>{% if post.post_type == "Q" %}
+            [질문] 
+        {% elif post.post_type == "A" %}
+            [답변]
+        {% else %}
+            [기타]
+        {% endif %}
+         {{ post.title }}</h3> 
         {{post.writer}} | {{post.pub_date}}<br> 
         {{post.summary}}
         <a href="{% url 'main:detail' post.id %}">자세히 보기</a>
