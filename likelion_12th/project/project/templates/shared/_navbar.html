@@ -7,6 +7,8 @@
     <!-- new-post 링크 연결 -->
     <a class="navbar-link" href="{% url 'main:new-post' %}">글쓰기</a>
 
+    <a class="navbar-link" href="{% url 'main:tag-list' %}">해시태그</a>
+
     <!--사용자 인증 정보-->
     <div class="nav-right">
         {% if user.is_authenticated %}
