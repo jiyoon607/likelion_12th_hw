@@ -129,6 +129,7 @@ def deleteComment(request, id):
 
     return redirect('main:detail', post.id) 
 
+
 def tag_list(request):
     tags = Tag.objects.all()
     return render(request, 'main/tag-list.html', {'tags':tags})

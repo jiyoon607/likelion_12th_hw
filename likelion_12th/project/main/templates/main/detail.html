@@ -49,7 +49,9 @@
         </p>
         <p>내용 : {{comment.content}}</p> 
         <p>{{comment.pub_date}}</p>
-        <t><a href="{% url 'main:deleteComment' comment.id %}">삭제하기</a></t> 
+        {% if comment.writer == user %}
+            <t><a href="{% url 'main:deleteComment' comment.id %}">삭제하기</a></t> 
+        {% endif %}
         {% endfor %} 
     </div> 
 </div>
