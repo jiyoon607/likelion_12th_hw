@@ -9,10 +9,19 @@
         {% else %}
             [기타]
         {% endif %}
-        {{ post.title }}</h3> 
-    작성자 : {{ post.writer }}
+        {{ post.title }}
+    </h3> 
+    <a href="{% url 'users:mypage' post.writer.id %}">작성자 : {{post.writer}}</a>
     <br>
     날짜 : {{ post.pub_date }}
+    <a href="{% url 'main:likes' post.id %}">
+        {% if user in post.like.all %} 
+             취소 
+        {% else %}
+             좋아요 
+        {% endif %}
+    </a> 
+    {{post.like_count}}개
     <p>
         {% for tag in post.tag.all %} 
             <a href="{% url 'main:tag-posts' tag.id %}">#{{ tag.name }} </a>  
@@ -25,7 +34,7 @@
     <p>{{ post.body }}</p>
     {% if post.writer == user %}
         <a href="{% url 'main:edit' post.id %}">글 수정하기</a> 
-        <t><a href="{% url 'main:delete' post.id %}">삭제하기</a></t>
+        <a href="{% url 'main:delete' post.id %}">삭제하기</a>
     {% endif %}
 </div>
 <br> 
@@ -50,7 +59,7 @@
         <p>내용 : {{comment.content}}</p> 
         <p>{{comment.pub_date}}</p>
         {% if comment.writer == user %}
-            <t><a href="{% url 'main:deleteComment' comment.id %}">삭제하기</a></t> 
+            <a href="{% url 'main:deleteComment' comment.id %}">삭제하기</a>
         {% endif %}
         {% endfor %} 
     </div> 

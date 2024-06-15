@@ -16,7 +16,9 @@ class Post(models.Model):
     body = models.TextField()
     pub_date = models.DateTimeField()
     tag = models.ManyToManyField(Tag, related_name='post', blank=True)
-
+    like = models.ManyToManyField(User, related_name='likes', blank=True)
+    like_count = models.PositiveIntegerField(default=0)
+    
     def __str__(self):
         return self.title
 

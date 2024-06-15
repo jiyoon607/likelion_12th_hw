@@ -3,16 +3,27 @@
 
 {% block content %}
 <h1> 마이페이지에 오신 것을 환영합니다</h1>
-<h3>ID: {{user.username}}</h3>
-<h3>성별: 
-    {% if user.profile.gender == "GENDER_F" %}
-        여성
+<h3>이름: {{user.profile.name}}</h3>
+<p>팔로워 {{user.profile.followers.count}}명</p>
+{% for follower in user.profile.followers.all %}
+    <a href="{% url 'users:mypage' follower.user.id %}">{{ follower.name }}</a><br>
+{% endfor %}
+<p>팔로잉 {{user.profile.followings.count}}명</p>
+{% for following in user.profile.followings.all %}
+    <a href="{% url 'users:mypage' following.user.id %}">{{ following.name }}</a><br>
+{% endfor %}
+
+{% if request.user != user %}
+    {% if request.user.profile in user.profile.followers.all %}
+        <a href="{% url 'users:follow' user.id %}">
+            <button type="button" class="btn btn-outline-info">언팔로우</button>
+        </a>
     {% else %}
-        남성
+        <a href="{% url 'users:follow' user.id %}">
+            <button type="button" class="btn btn-info">팔로우</button>
+        </a>
     {% endif %}
-</h3>
-<h3>생년월일: {{user.profile.birth}}</h3>
-<h3>email: {{user.profile.email}}</h3>
+{% endif %}
 <br>
 <h2>내 게시글</h2> 
 <div> 

@@ -56,7 +56,7 @@ def create(request):
         new_post = Post()
 
         new_post.title = request.POST['title']
-        new_post.writer = request.user
+        new_post.writer = request.user.profile.name
         new_post.post_type = request.POST['post_type']
         new_post.image = request.FILES.get('image')
         new_post.body = request.POST['body']
@@ -144,3 +144,15 @@ def tag_posts(request, tag_id):
     temp_posts = set(posts) #중복제거
     posts = list(temp_posts)
     return render(request, 'main/tag-post.html', {'tag':tag, 'posts':posts})
+
+def likes(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.user in post.like.all():
+        post.like.remove(request.user)
+        post.like_count -= 1
+        post.save()
+    else:
+        post.like.add(request.user)
+        post.like_count += 1
+        post.save()
+    return redirect('main:detail', post.id)
