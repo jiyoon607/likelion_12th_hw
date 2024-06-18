@@ -56,7 +56,7 @@ def create(request):
         new_post = Post()
 
         new_post.title = request.POST['title']
-        new_post.writer = request.user.profile.name
+        new_post.writer = request.user
         new_post.post_type = request.POST['post_type']
         new_post.image = request.FILES.get('image')
         new_post.body = request.POST['body']
